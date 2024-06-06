@@ -7,7 +7,7 @@ router.get('/', withAuth, async (req, res) => {
     try {
         const attireData = await Attire.findAll({});
         const attires = attireData.map((attire) => attire.get({ plain: true }));
-        res.render('home', { title: 'dressCode', attires });
+        res.render('login', { title: 'dressCode', attires });
     } catch (err) {
         res.status(500).json(err);
     }

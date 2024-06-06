@@ -13,14 +13,14 @@ const getAttireSuggestions = () => {
 };
 
 // Define the root route
-router.get('/', (req, res) => {
-    const attires = getAttireSuggestions();
-    res.render('home', { title: 'dressCode', attires });
-});
+// router.get('/', (req, res) => {
+//     const attires = getAttireSuggestions();
+//     res.render('home', { title: 'dressCode', attires });
+// });
 
 // Use API and HTML routes
-router.use('/api', apiRoutes);
 router.use('/', htmlRoutes);
+router.use('/api', apiRoutes);
 
 // Handle 404
 router.use((req, res) => {
