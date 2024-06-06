@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const { Attire } = require('../models');
+const withAuth = require('../middleware/auth'); // Import the auth middleware
 
-// Home route
-router.get('/', async (req, res) => {
+// Home route - Protected
+router.get('/', withAuth, async (req, res) => {
     try {
         const attireData = await Attire.findAll({});
         const attires = attireData.map((attire) => attire.get({ plain: true }));
@@ -12,7 +13,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Login route
+// Login route - Public
 router.get('/login', (req, res) => {
     if (req.session.logged_in) {
         res.redirect('/dashboard');
@@ -21,12 +22,8 @@ router.get('/login', (req, res) => {
     res.render('login', { title: 'Login' });
 });
 
-// Dashboard route
-router.get('/dashboard', async (req, res) => {
-    if (!req.session.logged_in) {
-        res.redirect('/login');
-        return;
-    }
+// Dashboard route - Protected
+router.get('/dashboard', withAuth, async (req, res) => {
     try {
         const attireData = await Attire.findAll({ where: { user_id: req.session.user_id } });
         const attires = attireData.map((attire) => attire.get({ plain: true }));
