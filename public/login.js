@@ -14,7 +14,9 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
         if (response.ok) {
             document.location.replace('/dashboard');
         } else {
-            alert('Failed to log in.');
+            const errorMessage = document.getElementById('error-message');
+            errorMessage.innerHTML = `Failed to log in. Don't have an account? <a href="/register">Register here</a>`;
+            errorMessage.style.display = 'block';
         }
     }
 });

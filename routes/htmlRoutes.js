@@ -7,7 +7,7 @@ router.get('/', withAuth, async (req, res) => {
     try {
         const attireData = await Attire.findAll({});
         const attires = attireData.map((attire) => attire.get({ plain: true }));
-        res.render('login', { title: 'dressCode', attires });
+        res.render('home', { title: 'dressCode', attires });
     } catch (err) {
         res.status(500).json(err);
     }
@@ -20,6 +20,11 @@ router.get('/login', (req, res) => {
         return;
     }
     res.render('login', { title: 'Login' });
+});
+
+// Register route - Public
+router.get('/register', (req, res) => {
+    res.render('register', { title: 'Register' });
 });
 
 // Dashboard route - Protected
