@@ -1,6 +1,9 @@
 /* placeholder css */
-.bg {
-    background-color: lightblue;
+  .bg {
+    background: linear-gradient(to bottom, lightblue, skyblue);
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    margin: 0;
   }
   
   h1 {

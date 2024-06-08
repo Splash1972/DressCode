@@ -28,6 +28,15 @@ CREATE TABLE attires (
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
+CREATE TABLE events (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    description VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
 -- Create the sessions table for express-session
 CREATE TABLE sessions (
     sid VARCHAR NOT NULL COLLATE "default",

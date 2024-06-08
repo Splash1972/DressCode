@@ -1,0 +1,16 @@
+{{!-- events.handlebars --}}
+
+<div class="container mt-5">
+  <div class="jumbotron text-center">
+    <h1 class="display-4">Choose an Event</h1>
+    <p class="lead">Select an event to get started:</p>
+    <hr class="my-4">
+    <ul>
+      {{#each events}}
+        <li>
+          <a href="/event/{{this.id}}" role="button">{{this.name}}</a>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+</div>
