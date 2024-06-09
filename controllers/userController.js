@@ -4,21 +4,24 @@ module.exports = {
     // register function
     register: async (req, res) => {
         try {
-            const { username, email, password } = req.body;
+            const { firstName, lastName, email, password } = req.body;
+            console.log(firstName, lastName);
     
-            if (!username || !email || !password) {
+            if (!firstName || !lastName || !email || !password) {
                 res.status(400).render('register', { message: 'Please fill in all fields' });
                 return;
             }
     
             const userData = await User.findOne({ where: { email } });
+            console.log(userData);
     
             if (userData) {
                 res.status(400).render('register', { message: 'Email already in use' });
                 return;
             }
     
-            const newUser = await User.create({ username, email, password });
+            const newUser = await User.create({ firstName, lastName, email, password });
+            console.log(newUser);
     
             if (!newUser) {
                 res.status(400).render('register', { message: 'Error creating user' });
@@ -32,6 +35,7 @@ module.exports = {
                 res.redirect('/');
             });
         } catch (err) {
+            console.log(err);
             res.status(500).json(err);
         }
     },
@@ -62,7 +66,7 @@ module.exports = {
                 req.session.user_id = userData.id;
                 req.session.logged_in = true;
     
-                res.redirect('/');
+                res.redirect('/');  // https://localhost:3001/
             });
         } catch (err) {
             res.status(500).json(err);

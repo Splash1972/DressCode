@@ -1,13 +1,16 @@
 const router = require('express').Router();
 const { Attire } = require('../models');
 const withAuth = require('../middleware/auth'); // Import the auth middleware
+const { log } = require('handlebars');
 
 // Home route - Protected
 router.get('/', withAuth, async (req, res) => {
     try {
-        const attireData = await Attire.findAll({});
-        const attires = attireData.map((attire) => attire.get({ plain: true }));
-        res.render('home', { title: 'dressCode', attires });
+        // const attireData = await Attire.findAll({});
+        // const attires = attireData.map((attire) => attire.get({ plain: true }));
+        // console.log(attires);
+        // res.render('home', { title: 'dressCode', attires });
+    res.render('login')
     } catch (err) {
         res.status(500).json(err);
     }

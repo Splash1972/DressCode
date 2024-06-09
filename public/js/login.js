@@ -40,6 +40,8 @@ const loginFormHandler = async (event) => {
     const email = $('#registerEmail').val().trim();
     const password = $('#registerPassword').val().trim();
     const confirmPassword = $('#registerConfirmPassword').val().trim();
+
+    console.log(firstName, lastName);
   
     if (password !== confirmPassword) {
       $('#registerForm').prepend($('<div>', {
@@ -61,7 +63,7 @@ const loginFormHandler = async (event) => {
   
   
     if (firstName && lastName && email && password) {
-      const response = await fetch('/api/users/', {
+      const response = await fetch('/api/users/register', {
         method: 'POST',
         body: JSON.stringify({ firstName, lastName, email, password }),
         headers: { 'Content-Type': 'application/json' },
