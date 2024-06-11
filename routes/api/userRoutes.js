@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { register, login, logout } = require('../../controllers/userController');
+const { User } = require('../../models');
 
 // Registration route
 router.post('/register', register);
@@ -12,22 +13,28 @@ router.post('/login', async (req, res) => {
     const user = await User.findOne({ where: { email } });
 
     if (!user) {
-      return res.status(401).json({ message: 'Invalid email or password' });
+      return res.status(401).json({ message: 'User not found' });
     }
 
     const validPassword = await user.checkPassword(password);
 
     if (!validPassword) {
-      return res.status(401).json({ message: 'Invalid email or password' });
+      return res.status(401).json({ message: 'Invalid password' });
     }
 
     req.session.save(() => {
       req.session.user_id = user.id;
-      req.session.logged_in = true;
+      req.session.loggedIn = true;
 
-      res.json({ message: 'Logged in successfully' });
+      // res.status(200).json({ message: 'Logged in successfully' });
+      // res.render('homepage-attire');
     });
+    console.log(req.session);
+    res.render('homepage-attire', {
+      loggedIn: req.session.loggedIn
+    }) 
   } catch (err) {
+    console.log(err);
     res.status(500).json({ message: 'Error logging in' });
   }
 });

@@ -4,17 +4,26 @@ const withAuth = require('../middleware/auth'); // Import the auth middleware
 const { log } = require('handlebars');
 
 // Home route - Protected
-router.get('/', withAuth, async (req, res) => {
-    try {
+// router.get('/', withAuth, async (req, res) => {
+//     try {
         // const attireData = await Attire.findAll({});
         // const attires = attireData.map((attire) => attire.get({ plain: true }));
         // console.log(attires);
         // res.render('home', { title: 'dressCode', attires });
-    res.render('login')
+//         res.render('login')
+//     } catch (err) {
+//         res.status(500).json(err);
+//     }
+// });
+
+router.get('/homepage-attire', withAuth, async (req, res) => {
+    try {
+        res.render('homepage-attire')
+
     } catch (err) {
         res.status(500).json(err);
     }
-});
+})
 
 // Login route - Public
 router.get('/login', (req, res) => {
