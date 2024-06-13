@@ -3,22 +3,11 @@ const { Attire } = require('../models');
 const withAuth = require('../middleware/auth'); // Import the auth middleware
 const { log } = require('handlebars');
 
-// Home route - Protected
-// router.get('/', withAuth, async (req, res) => {
-//     try {
-        // const attireData = await Attire.findAll({});
-        // const attires = attireData.map((attire) => attire.get({ plain: true }));
-        // console.log(attires);
-        // res.render('home', { title: 'dressCode', attires });
-//         res.render('login')
-//     } catch (err) {
-//         res.status(500).json(err);
-//     }
-// });
 
 router.get('/homepage-attire', withAuth, async (req, res) => {
     try {
-        res.render('homepage-attire')
+        console.log(req.session)
+        res.render('homepage-attire', {loggedIn: req.session.loggedIn})
 
     } catch (err) {
         res.status(500).json(err);
@@ -27,11 +16,11 @@ router.get('/homepage-attire', withAuth, async (req, res) => {
 
 // Login route - Public
 router.get('/login', (req, res) => {
-    if (req.session.logged_in) {
+    if (req.session.loggedIn) {
         res.redirect('/dashboard');
         return;
     }
-    res.render('login', { title: 'Login' });
+    res.render('login', { title: 'Login',loggedIn: req.session.loggedIn });
 });
 
 // Register route - Public

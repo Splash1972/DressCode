@@ -1,10 +1,11 @@
-const logout = async () => {
+const logout = async (event) => {
+  event.preventDefault()
     try {
       const response = await fetch('/api/users/logout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
       });
-      document.location.replace('/');
+      document.location.replace('/login');
     } catch (error) {
       console.error(error);
     }

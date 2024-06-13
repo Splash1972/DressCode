@@ -8,7 +8,7 @@ const dayjs = require('dayjs');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 const hbs = exphbs.create({});
 
@@ -21,15 +21,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const { Event } = require('./models');
 
-app.get('/events', async (req, res) => {
-  try {
-    const events = await Event.findAll(); // retrieve all events from the database
-    res.render('events', { events });
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Error retrieving events');
-  }
+app.get('/', (req, res) => {
+  res.render('login'); // Render the main.handlebars view
 });
+
+// app.get('/events', async (req, res) => {
+//   try {
+//     const events = await Event.findAll(); // retrieve all events from the database
+//     res.render('events', { events });
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send('Error retrieving events');
+//   }
+// });
 
 app.use(session({
     secret: process.env.SESSION_SECRET,

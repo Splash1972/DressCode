@@ -32,7 +32,7 @@ module.exports = {
                 req.session.user_id = newUser.id;
                 req.session.logged_in = true;
     
-                res.redirect('/');
+                res.render('login');
             });
         } catch (err) {
             console.log(err);
@@ -73,14 +73,18 @@ module.exports = {
         }
     },
     logout: (req, res) => {
+        
         if (req.session) {
-            req.session.destroy(err => {
-                if (err) {
-                    res.status(400).send('Unable to log out');
-                } else {
-                    res.send('Logout successful');
-                }
-            });
+            // err => {
+            //     if (err) {
+            //         res.status(400).send('Unable to log out');
+            //     } else {
+            //         // res.send('Logout successful');
+            //         res.render('/login')
+            //     }
+            // }
+            req.session.destroy();
+            res.render('/login')
         } else {
             res.end();
         }
