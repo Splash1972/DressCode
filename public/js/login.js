@@ -71,7 +71,15 @@ const loginFormHandler = async (event) => {
       console.log(response.ok);
   
       if (response.ok) {
-        document.location.replace('/homepage-attire');
+        // Switch to login tab
+        $('#pills-login-tab').tab('show');
+  
+        // Optional: Display a success message
+        $('#loginForm').prepend($('<div>', {
+          class: "alert alert-success",
+          id: "registerMessage",
+          html: "<span>Registration successful! Please log in.</span>"
+        }));
       } else {
         const data = await response.json();
   
