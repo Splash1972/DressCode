@@ -42,10 +42,10 @@ function displayClothingData(data) {
     if (data && data.payload && data.payload.products && data.payload.products.length > 0) {
         const product = data.payload.products[0]; // Access the first product in the array
         const productHTML = `
-            <div>
+            <div style="text-align: center; margin: 0 auto;">
                 <h2>${product.productTitle}</h2>
                 <p>${product.description.shortDescription}</p>
-                <img src="${product.images[0].url}" alt="${product.productTitle}">
+                <img src="${product.images[0].url}" alt="${product.productTitle}" style="display: block; margin: 0 auto;">
             </div>
         `;
         clothingDataDiv.innerHTML = productHTML;
