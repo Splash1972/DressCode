@@ -13,7 +13,7 @@ document.getElementById('attire-form').addEventListener('submit', async (event) 
         });
 
         if (response.ok) {
-            document.location.replace('/dashboard');
+            document.location.replace('/login');
         } else {
             alert('Failed to add attire.');
         }

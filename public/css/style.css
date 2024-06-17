@@ -1,17 +1,40 @@
 /* placeholder css */
-  .bg {
-    background: linear-gradient(to bottom, lightblue, skyblue);
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    margin: 0;
-  }
-  
-  h1 {
-    color: white;
-    text-align: center;
-  }
-  
-  p {
-    font-family: verdana;
-    font-size: 20px;
-  }
+.bg {
+  background: linear-gradient(to bottom, lightblue, skyblue);
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.pullDown {
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+
+p {
+  font-family: verdana;
+  font-size: 20px;
+}
+
+#event-type {
+  display: block;
+  margin: 0 auto;
+  width: 200px;
+  height: 30px;
+  margin-bottom: 20px;
+}
+
+#clothing-data {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.clothing-item {
+  margin-bottom: 10px;
+}

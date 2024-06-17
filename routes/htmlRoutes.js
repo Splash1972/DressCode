@@ -17,26 +17,26 @@ router.get('/homepage-attire', withAuth, async (req, res) => {
 // Login route - Public
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
-        res.redirect('/dashboard');
+        res.redirect('/login');
         return;
     }
     res.render('login', { title: 'Login',loggedIn: req.session.loggedIn });
 });
 
 // Register route - Public
-router.get('/register', (req, res) => {
-    res.render('register', { title: 'Register' });
-});
+// router.get('/register', (req, res) => {
+//     res.render('register', { title: 'Register' });
+// });
 
 // Dashboard route - Protected
-router.get('/dashboard', withAuth, async (req, res) => {
-    try {
-        const attireData = await Attire.findAll({ where: { user_id: req.session.user_id } });
-        const attires = attireData.map((attire) => attire.get({ plain: true }));
-        res.render('dashboard', { title: 'Dashboard', attires });
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
+// router.get('/login', withAuth, async (req, res) => {
+//     try {
+//         const attireData = await Attire.findAll({ where: { user_id: req.session.user_id } });
+//         const attires = attireData.map((attire) => attire.get({ plain: true }));
+//         res.render('login', { title: 'login', attires });
+//     } catch (err) {
+//         res.status(500).json(err);
+//     }
+// });
 
 module.exports = router;

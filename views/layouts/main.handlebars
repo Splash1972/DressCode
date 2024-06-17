@@ -31,12 +31,10 @@
     </div>
     <div id="navHeader">
       <div class="content-center float-right">
-        {{#if firstName}}
-        <H3 class="text-light fst-italic text-center">Welcome {{loggedIn}} </H3>
+        {{#if loggedIn}}
+        <H3 class="text-light fst-italic text-center">Welcome {{email}} </H3>
         {{/if}}
-        <a id="home" class="navbar-brand text-light p-3 " href="/login"><i class="m-1 fas fa-home"></i>Home</a>
-        {{!-- <a id="dashboard" class="navbar-brand text-light p-3 " href="/settings"><i
-            class="m-1 fas fa-dashboard"></i>Profile and Settings</a> --}}
+        <a id="home" class="navbar-brand text-light p-3 " href="/"><i class="m-1 fas fa-home"></i>Home</a>
         {{#if loggedIn}}
         <a id="logout" class="navbar-brand text-light p-3" href="/"><i
             class="m-1 fas fa-right-from-bracket"></i></i><span id="logout">Sign Out</span></a>
