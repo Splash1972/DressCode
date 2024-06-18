@@ -25,16 +25,6 @@ app.get('/', (req, res) => {
   res.render('login'); // Render the main.handlebars view
 });
 
-// app.get('/events', async (req, res) => {
-//   try {
-//     const events = await Event.findAll(); // retrieve all events from the database
-//     res.render('events', { events });
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).send('Error retrieving events');
-//   }
-// });
-
 app.use(session({
     secret: process.env.SESSION_SECRET,
     cookie: {},
